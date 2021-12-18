@@ -26,7 +26,7 @@ class DioUtils{
       _dio = Dio(options);
       _dio!.transformer = DioTransformer();
       _dio!.interceptors.add(DioInterceptors());
-      _dio!.interceptors.add(LogInterceptor(requestBody: true,responseBody: true));
+      _dio!.interceptors.add(LogInterceptor(responseBody: true));
 
     }
     return _dio!;

@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/widgets.dart';
 
 class DioInterceptors extends Interceptor{
   @override
