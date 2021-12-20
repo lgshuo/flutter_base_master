@@ -2,7 +2,10 @@ import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base_master/base/http/request/dio/dio_utils.dart';
+import 'package:flutter_base_master/base/state/base_state_controller.dart';
 import 'package:flutter_base_master/base/utils/toast_utils.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 
 import 'base_result.dart';
 import 'http_exception.dart';
@@ -35,7 +38,7 @@ class Request {
     Success<T>? success,
     Fail? fail,
   }) {
-    _request(url, "post", params, success: success, fail: (code, msg) {});
+    _request(url, "post", params, success: success, fail: fail);
   }
 
   /// 请求类
@@ -88,5 +91,10 @@ void _onError(int code, String msg, Fail? fail) {
   }
   if (fail != null) {
     fail(code, msg);
+  }else {
+   var controller = Get.find<BaseStateController>();
+   if(controller!=null){
+     controller.showError();
+   }
   }
 }

@@ -1,22 +1,24 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_base_master/base/state/base_state_get_view.dart';
+import 'package:flutter_base_master/base/utils/toast_utils.dart';
+import 'package:flutter_base_master/base/widget/list_view/refresh_list_view_page.dart';
 import 'home_controller.dart';
 
-class HomePage extends BaseStateView<HomeController>{
+class HomePage extends BaseRefreshListViewPage<HomeController>{
   @override
   void initState() {
-   controller.showLoading();
+    controller.loadData();
   }
 
   @override
-  Widget successWidget(HomeController controller) {
-    return Scaffold(
-      body: Center(
-        child: Text(controller.updateBean!.downloadUrl)
-      ),
-    );
+  Widget itemView(BuildContext context, int index) {
+   return Card(child:Text(controller.datas[index].describes));
+  }
+
+  @override
+  void onItemClick(BuildContext context, int index) {
+    ToastUtils.show(controller.datas[index].describes);
   }
 
 }

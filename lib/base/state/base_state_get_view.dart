@@ -19,7 +19,7 @@ abstract class BaseStateView<T extends BaseStateController>
   }
 
 
-  Widget successWidget(T controller);
+  Widget successWidget(T controller,BuildContext context);
   void initState();
 }
 class BaseState<T extends BaseStateController> extends State<BaseStateView<T>>{
@@ -34,13 +34,13 @@ class BaseState<T extends BaseStateController> extends State<BaseStateView<T>>{
       init: widget.controller,
       builder: (controller) {
         switch(controller.loadState.value){
-          case 0:
+          case BaseStateController.LOADING:
             return LoadingPage();
-          case 1:
-            return widget.successWidget(controller);
-          case 2:
+          case BaseStateController.SUCCESS:
+            return widget.successWidget(controller, context);
+          case BaseStateController.EMPTY:
             return EmptyPage();
-          case 3:
+          case BaseStateController.ERROR:
             return ErrorPage(controller);
         }
         return Text("未知状态");
