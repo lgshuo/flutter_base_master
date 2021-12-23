@@ -36,30 +36,22 @@ class SPUtils {
     }
   }
 
-  setString(String key, String value) {
-    prefs?.setString(key, value);
-  }
-
-  setDouble(String key, double value) {
-    prefs?.setDouble(key, value);
-  }
-
-  setInt(String key, int value) {
-    prefs?.setInt(key, value);
-  }
-
-  setBool(String key, bool value) {
-    prefs?.setBool(key, value);
-  }
-
-  setStringList(String key, List<String> value) {
-    prefs?.setStringList(key, value);
-  }
-
   remove(String key) {
     prefs?.remove(key);
   }
-
+  put(String key,Object value) {
+    if (value is int) {
+      prefs?.setInt(key, value);
+    } else if (value is String) {
+      prefs?.setString(key, value);
+    } else if (value is double) {
+      prefs?.setDouble(key, value);
+    }else if (value is bool) {
+      prefs?.setBool(key, value);
+    }else if (value is List<String>) {
+      prefs?.setStringList(key, value);
+    }
+  }
   T? get<T>(String key) {
     var result = prefs?.get(key);
     if (result != null) {

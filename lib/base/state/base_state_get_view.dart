@@ -9,8 +9,8 @@ import 'base_state_controller.dart';
 
 abstract class BaseStateView<T extends BaseStateController>
     extends StatefulWidget  {
-  final String? tag = null;
-
+  String? tag = null;
+  BaseStateView({this.tag}):super();
   T get controller => GetInstance().find<T>(tag: tag);
 
   @override

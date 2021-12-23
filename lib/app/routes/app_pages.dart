@@ -1,18 +1,18 @@
-import 'package:flutter_base_master/app/page/home/home_binding.dart';
-import 'package:flutter_base_master/app/page/home/home_page.dart';
+import 'package:flutter_base_master/app/page/main/main_page.dart';
 import 'package:get/get.dart';
+import 'package:flutter_base_master/app/page/main/main_binding.dart';
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.MAIN;
 
   static final routes = [
     GetPage(
-      name: _Paths.HOME,
-      page: () => HomePage(),
-      binding: HomeBinding(),
+      name: _Paths.MAIN,
+      page: () => MainPage(),
+      binding: MainBinding(),
     ),
   ];
 }
