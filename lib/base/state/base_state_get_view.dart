@@ -7,37 +7,27 @@ import 'package:get/get.dart';
 import 'base_state_controller.dart';
 
 
-abstract class BaseStateView<T extends BaseStateController>
-    extends StatefulWidget  {
-  String? tag = null;
-  BaseStateView({this.tag}):super();
-  T get controller => GetInstance().find<T>(tag: tag);
+abstract class BaseStateView<T extends BaseStateController> extends GetView<T> {
 
-  @override
-  BaseState createState() {
-    return BaseState();
-  }
+  Widget successWidget(T controller, BuildContext context);
 
-
-  Widget successWidget(T controller,BuildContext context);
-  void initState();
-}
-class BaseState<T extends BaseStateController> extends State<BaseStateView<T>>{
-  @override
-  void initState() {
-    widget.initState();
-    super.initState();
+  void onInit();
+  Function(GetXState<T> state)? initState(){
+    return null;
   }
   @override
   Widget build(BuildContext context) {
     return GetX<T>(
-      init: widget.controller,
+      init: initController(),
+      initState:initState()!=null?initState():(_){
+        onInit();
+      },
       builder: (controller) {
-        switch(controller.loadState.value){
+        switch (controller.loadState.value) {
           case BaseStateController.LOADING:
             return LoadingPage();
           case BaseStateController.SUCCESS:
-            return widget.successWidget(controller, context);
+            return successWidget(controller, context);
           case BaseStateController.EMPTY:
             return EmptyPage();
           case BaseStateController.ERROR:
@@ -47,4 +37,6 @@ class BaseState<T extends BaseStateController> extends State<BaseStateView<T>>{
       },
     );
   }
+
+  T? initController() => controller;
 }

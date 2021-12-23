@@ -2,13 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base_master/base/utils/toast_utils.dart';
 import 'package:flutter_base_master/base/widget/list_view/refresh_list_view_page.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_getx_widget.dart';
 import 'home_item_controller.dart';
 
 class HomeItemPage4 extends BaseRefreshListViewPage<HomeItemController4> {
 
   @override
-  void initState() {
+  void onInit() {
     controller.loadData();
   }
 
