@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-abstract class BaseStateController extends SuperController {
+abstract class BaseStateController extends GetxController {
   static const  int LOADING = 0;
   static const  int SUCCESS = 1;
   static const  int EMPTY = 2;
@@ -28,15 +28,5 @@ abstract class BaseStateController extends SuperController {
   }
   void loadData();
 
-  @override
-  void onDetached() {}
 
-  @override
-  void onInactive() {}
-
-  @override
-  void onPaused() {}
-
-  @override
-  void onResumed() {}
 }

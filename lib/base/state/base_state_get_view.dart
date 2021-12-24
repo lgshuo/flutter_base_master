@@ -22,16 +22,16 @@ abstract class BaseStateView<T extends BaseStateController> extends GetView<T> {
       initState:initState()!=null?initState():(_){
         onInit();
       },
-      builder: (controller) {
-        switch (controller.loadState.value) {
+      builder: (buildController) {
+        switch (buildController.loadState.value) {
           case BaseStateController.LOADING:
             return LoadingPage();
           case BaseStateController.SUCCESS:
-            return successWidget(controller, context);
+            return successWidget(buildController, context);
           case BaseStateController.EMPTY:
             return EmptyPage();
           case BaseStateController.ERROR:
-            return ErrorPage(controller);
+            return ErrorPage(buildController);
         }
         return Text("未知状态");
       },
