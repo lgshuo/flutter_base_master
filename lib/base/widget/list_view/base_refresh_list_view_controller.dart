@@ -6,7 +6,6 @@ abstract class BaseRefreshListViewController<T> extends BaseStateController {
   RefreshController refreshController = RefreshController();
   var listLoad = 1.obs;
   var datas = <T>[].obs;
-  bool isFirst = true;
   var page = 1;
 
   void loadMore() {
@@ -16,16 +15,19 @@ abstract class BaseRefreshListViewController<T> extends BaseStateController {
 
 
   void refresh() {
-    page = 1;
-    datas.clear();
+    page=1;
     loadData();
   }
 
   void loadCompleted() {
-    refreshController.loadComplete();
+    if (refreshController.isLoading) {
+      refreshController.loadComplete();
+    }
   }
 
   void refreshCompleted() {
-    refreshController.refreshCompleted();
+    if (refreshController.isRefresh) {
+      refreshController.refreshCompleted();
+    }
   }
 }

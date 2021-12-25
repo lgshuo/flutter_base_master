@@ -7,7 +7,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'base_refresh_list_view_controller.dart';
 
 abstract class BaseRefreshListViewPage<T extends BaseRefreshListViewController>
-    extends BaseStateView<T> {
+    extends BaseStatelessView<T> {
   @override
   Widget successWidget(T controller, BuildContext context) {
     return SmartRefresher(

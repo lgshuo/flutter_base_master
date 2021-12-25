@@ -11,19 +11,27 @@ abstract class BaseStateController extends GetxController {
 
   ///加载成功
   showSuccess(){
-    loadState.value = SUCCESS;
+    if (loadState.value!=SUCCESS) {
+      loadState.value = SUCCESS;
+    }
   }
   ///加载空界面
   showEmpty(){
-    loadState.value = EMPTY;
+    if (loadState.value != EMPTY) {
+      loadState.value = EMPTY;
+    }
   }
   ///加载失败
   showError(){
-    loadState.value = ERROR;
+    if (loadState.value != ERROR) {
+      loadState.value = ERROR;
+    }
   }
   ///加载中
   showLoading(){
-    loadState.value = LOADING;
+    if (loadState.value != LOADING) {
+      loadState.value = LOADING;
+    }
     loadData();
   }
   void loadData();
