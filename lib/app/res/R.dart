@@ -23,4 +23,6 @@ class ColorRes {
     50: const Color(0xffff9bd5),
     10: const Color(0xf0ff9bd5)
   });
+  final Color white = Colors.white;
+  final Color black = Colors.black;
 }

@@ -13,9 +13,9 @@ class RefreshListViewWidget<T extends BaseRefreshListViewController, D>
   final String? tag;
   final T? init;
   final void Function(GetXState<T> state)? initState;
-  Widget Function()? listBuilder;
+  Widget? refreshChild;
 
-  Widget? Function(BuildContext context, int index, D data) itemView;
+  Widget? Function(BuildContext context, int index, D data)? itemView;
 
   void Function(BuildContext context, int index, D data) onItemClick;
 
@@ -23,7 +23,7 @@ class RefreshListViewWidget<T extends BaseRefreshListViewController, D>
       {this.tag,
       this.initState,
       this.init,
-      this.listBuilder,
+      this.refreshChild,
       required this.itemView,
       required this.onItemClick});
 
@@ -46,18 +46,18 @@ class RefreshListViewWidget<T extends BaseRefreshListViewController, D>
               onLoading: () {
                 controller.loadMore();
               },
-              child: listBuilder == null
+              child: refreshChild == null
                   ? ListView.builder(
                       itemBuilder: (context, index) => GestureDetector(
                         child:
-                            itemView(context, index, controller.datas[index]),
+                            itemView!(context, index, controller.datas[index]),
                         onTap: () {
                           onItemClick(context, index, controller.datas[index]);
                         },
                       ),
                       itemCount: controller.datas.length,
                     )
-                  : listBuilder!());
+                  : refreshChild!);
         });
   }
 }
