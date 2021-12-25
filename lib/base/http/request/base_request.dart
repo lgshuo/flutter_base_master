@@ -92,9 +92,9 @@ void _onError(int code, String msg, Fail? fail) {
   if (fail != null) {
     fail(code, msg);
   }else {
-   var controller = Get.find<BaseStateController>();
-   if(controller!=null){
-     controller.showError();
-   }
+   // var controller = Get.find<BaseStateController>();
+   // if(controller!=null){
+   //   controller.showError();
+   // }
   }
 }

@@ -1,13 +1,13 @@
-import 'dart:developer';
 
 import 'package:flutter_base_master/app/data/home_list_data.dart';
 import 'package:flutter_base_master/base/http/request/base_request.dart';
 import 'package:flutter_base_master/base/http/request/param_utils.dart';
 import 'package:flutter_base_master/base/http/request/request_api.dart';
+import 'package:flutter_base_master/base/state/base_state_controller.dart';
 import 'package:flutter_base_master/base/widget/list_view/base_refresh_list_view_controller.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
-class HomeItemController extends BaseRefreshListViewController<MainListData> {
+class HomeItemController extends BaseRefreshListViewController<MainListData>{
+  String title = "";
   @override
   void loadData() {
     String userUuid = Uri.encodeComponent("5C:C3:07:74:73:4C");
@@ -23,14 +23,42 @@ class HomeItemController extends BaseRefreshListViewController<MainListData> {
       });
       if (isFirst) {
         isFirst = false;
-        showSuccess();
       } else {
         refreshCompleted();
         loadCompleted();
+      }
+      if (loadState.value == BaseStateController.LOADING) {
+        showSuccess();
       }
     } /*,fail: (code,message){
       showError();
     }*/
         );
   }
+  String getInfoColumnCode() {
+    var infoColumnCode = "2ea80aad-9073-11ea-ad3d-00163e0a0789";
+    switch (title) {
+      case '时事':
+        infoColumnCode = "2ea80aad-9073-11ea-ad3d-00163e0a0789";
+        break;
+      case '财经':
+        infoColumnCode = "2ea80735-9073-11ea-ad3d-00163e0a0789";
+        break;
+      case '军事':
+        infoColumnCode = "2ea8078d-9073-11ea-ad3d-00163e0a0789";
+        break;
+      case '母婴':
+        infoColumnCode = "2ea8025b-9073-11ea-ad3d-00163e0a0789";
+        break;
+      case '健康':
+        infoColumnCode = "2ea805d8-9073-11ea-ad3d-00163e0a0789";
+        break;
+    }
+    return infoColumnCode;
+  }
+
+  void setTitle(title) {
+    this.title = title;
+  }
+
 }
