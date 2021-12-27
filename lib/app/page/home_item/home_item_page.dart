@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_base_master/app/constants/const.dart';
 import 'package:flutter_base_master/app/data/home_list_data.dart';
 import 'package:flutter_base_master/app/res/R.dart';
+import 'package:flutter_base_master/app/routes/app_pages.dart';
 import 'package:flutter_base_master/base/utils/toast_utils.dart';
 import 'package:flutter_base_master/base/widget/refresh_list_view_widget.dart';
 import 'package:get/get.dart';
@@ -104,11 +106,15 @@ class HomeItemPageState extends State<HomeItemPage>
             );
           },
           onItemClick: (context, index, data) {
+            Get.toNamed(Routes.WEB,arguments: {
+              Constants.TITLEID:data.titleId,
 
+            });
           }),
     );
   }
 
   @override
+
   bool get wantKeepAlive => true;
 }

@@ -1,4 +1,5 @@
 import 'package:flutter_base_master/app/page/main/main_page.dart';
+import 'package:flutter_base_master/app/page/web/web_page.dart';
 import 'package:get/get.dart';
 import 'package:flutter_base_master/app/page/main/main_binding.dart';
 part 'app_routes.dart';
@@ -13,6 +14,10 @@ class AppPages {
       name: _Paths.MAIN,
       page: () => MainPage(),
       binding: MainBinding(),
+    ),
+    GetPage(
+      name: _Paths.WEB,
+      page: () => WebPage(),
     ),
   ];
 }
